@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Typing Animation
+  // -----------------------
+  // Typing Animation Setup
+  // -----------------------
   const domains = [
     "Web Developer",
     "Software Developer",
@@ -14,10 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
     typedText.textContent = domains[index];
     index = (index + 1) % domains.length;
   }
-
   setInterval(changeText, 2500);
 
-  // Swiper config
+  // -----------------------
+  // Swiper Slider Config
+  // -----------------------
   const swiper = new Swiper(".swiper-container", {
     loop: true,
     centeredSlides: true,
@@ -44,49 +47,56 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-});
-const menuBtn = document.getElementById('menu-btn');
-const menu = document.getElementById('menu');
-const navbar = document.getElementById('navbar');
 
-// Toggle mobile menu
-menuBtn.addEventListener('click', () => {
-  menu.classList.toggle('hidden');
-});
+  // -----------------------
+  // Navbar Toggle for Mobile
+  // -----------------------
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+  const navbar = document.getElementById('navbar');
 
-// Hide menu after clicking any nav-link
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    menu.classList.add('hidden');
-  });
-});
-
-// Smooth scroll to section
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href').trim());
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-  });
-});
-
-// Navbar hide/show on scroll
-let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (currentScroll > lastScrollTop && currentScroll > 100) {
-    // Scroll down: hide navbar
-    navbar.style.transform = 'translateY(-100%)';
-  } else {
-    // Scroll up: show navbar
-    navbar.style.transform = 'translateY(0)';
+  // Toggle mobile menu
+  if (menuBtn && menu) {
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
   }
 
-  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-});
+  // Hide menu after clicking a nav-link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+    });
+  });
 
+  // -----------------------
+  // Smooth Scroll on Anchor Click
+  // -----------------------
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href').trim());
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // -----------------------
+  // Hide/Show Navbar on Scroll
+  // -----------------------
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop && currentScroll > 100) {
+      navbar.style.transform = 'translateY(-100%)'; // hide navbar
+    } else {
+      navbar.style.transform = 'translateY(0)'; // show navbar
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  });
+});
