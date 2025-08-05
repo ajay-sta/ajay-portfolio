@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Portfolio</title>
+  <link href="./output.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .typing::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-black text-white scroll-smooth">
+  <!-- Navbar -->
+<nav id="navbar" class="fixed top-0 left-0 w-full bg-black bg-opacity-60 backdrop-blur-md z-50 shadow-md transition-transform duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold text-cyan-400">Ajay Rathod Portfolio</h1>
+
+    <!-- Hamburger Button (mobile only) -->
+    <button id="menu-btn" class="block md:hidden text-white text-3xl focus:outline-none">
+      ☰
+    </button>
+
+    <!-- Navigation Links -->
+    <ul id="menu" class="hidden md:flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium absolute md:static bg-black bg-opacity-90 md:bg-transparent left-0 w-full md:w-auto top-[100%] px-6 py-4 md:p-0">
+      <li><a href="#home" class="nav-link hover:text-cyan-400 transition">Home</a></li>
+      <li><a href="#skills" class="nav-link hover:text-cyan-400 transition">Skills</a></li>
+      <li><a href="#projects" class="nav-link hover:text-cyan-400 transition">Projects</a></li>
+      <li><a href="#certificates" class="nav-link hover:text-cyan-400 transition">Certificates</a></li>
+      <li><a href="#contact" class="nav-link hover:text-cyan-400 transition">Contact</a></li>
+      <li><a href="#Feedback" class="nav-link hover:text-cyan-400 transition">Feedback</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+  const navbar = document.getElementById('navbar');
+
+  // Toggle mobile menu
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  // Hide menu after clicking any nav-link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+    });
+  });
+
+  // Smooth scroll to section
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href').trim());
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Navbar hide/show on scroll
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop && currentScroll > 100) {
+      // Scroll down: hide navbar
+      navbar.style.transform = 'translateY(-100%)';
+    } else {
+      // Scroll up: show navbar
+      navbar.style.transform = 'translateY(0)';
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  });
+</script>
+
+
+  <!-- Home Section -->
+<section id="home" class="min-h-screen flex flex-col md:flex-row items-center justify-center px-6 pt-32 md:pt-28 gap-8 md:gap-20" data-aos="fade-up">
+  <!-- Left Content -->
+  <div class="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-8 mx-auto pl-4 md:pl-56" data-aos="fade-right">
+    <h2 class="text-5xl md:text-7xl font-extrabold leading-tight">
+      Hi, I'm <span class="text-cyan-400">Ajay Rathod</span>
+    </h2>
+    <h3 id="typedText" class="text-3xl md:text-5xl font-semibold typing text-cyan-300 h-12">Web Developer</h3>
+    <p class="text-gray-300 text-xl max-w-xl">
+      I design and build modern, responsive websites using Tailwind CSS, JavaScript and other tools that deliver real impact.
+    </p>
+    <div class="flex flex-wrap gap-6">
+      <a href="#contact" class="bg-cyan-500 hover:bg-cyan-600 px-8 py-3 rounded-full text-white text-lg font-semibold transition-shadow shadow-lg hover:shadow-cyan-500/40">
+        Hire Me
+      </a>
+      <a href="#projects" class="border border-cyan-500 px-8 py-3 rounded-full text-cyan-400 text-lg font-semibold hover:bg-cyan-500 hover:text-white transition-shadow shadow-lg hover:shadow-cyan-500/40">
+        Projects
+      </a>
+    </div>
+  </div>
+
+  <!-- Right Content -->
+  <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+    <img src="/" alt="Ajay Rathod"
+      class="rounded-full w-[450px] h-[450px] object-cover border-4 border-cyan-400 shadow-xl hover:scale-105 transition-transform duration-500" />
+  </div>
+</section>
+
+ <!-- Technical Skills Section -->
+<section id="skills" class="py-20 px-6 bg-gradient-to-br from-black to-gray-900 text-white">
+  <h2 class="text-4xl font-bold text-center mb-14 text-cyan-400" data-aos="fade-up">Technical Skills</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    <!-- Card Component -->
+    <div 
+      class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/50 transition-all border border-gray-700 hover:border-cyan-400"
+      data-aos="zoom-in" data-aos-delay="100">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-code text-cyan-300 text-2xl"></i>
+        <h3 class="text-xl font-semibold text-cyan-300">Front-End</h3>
+      </div>
+      <ul class="space-y-1 text-gray-300">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>React.js</li>
+        <li>Responsive Design</li>
+      </ul>
+    </div>
+
+    <div 
+      class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/50 transition-all border border-gray-700 hover:border-cyan-400"
+      data-aos="zoom-in" data-aos-delay="200">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-server text-cyan-300 text-2xl"></i>
+        <h3 class="text-xl font-semibold text-cyan-300">Back-End</h3>
+      </div>
+      <ul class="space-y-1 text-gray-300">
+        <li>Node.js</li>
+        <li>Express.js</li>
+        <li>REST APIs</li>
+      </ul>
+    </div>
+
+    <div 
+      class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/50 transition-all border border-gray-700 hover:border-cyan-400"
+      data-aos="zoom-in" data-aos-delay="300">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-tools text-cyan-300 text-2xl"></i>
+        <h3 class="text-xl font-semibold text-cyan-300">Tools & Workflow</h3>
+      </div>
+      <ul class="space-y-1 text-gray-300">
+        <li>Git & GitHub</li>
+        <li>Postman</li>
+        <li>ChatGPT</li>
+        <li>Hugging Face</li>
+        <li>DeepSeek</li>
+      </ul>
+    </div>
+
+    <div 
+      class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/50 transition-all border border-gray-700 hover:border-cyan-400"
+      data-aos="zoom-in" data-aos-delay="400">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-laptop-code text-cyan-300 text-2xl"></i>
+        <h3 class="text-xl font-semibold text-cyan-300">Software Development</h3>
+      </div>
+      <ul class="space-y-1 text-gray-300">
+        <li>C Language</li>
+        <li>Java (Core + OOP)</li>
+        <li>DSA (Java)</li>
+        <li>OOP Principles</li>
+        <li>Object-Oriented Design</li>
+      </ul>
+    </div>
+
+    <div 
+      class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/50 transition-all border border-gray-700 hover:border-cyan-400"
+      data-aos="zoom-in" data-aos-delay="500">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-database text-cyan-300 text-2xl"></i>
+        <h3 class="text-xl font-semibold text-cyan-300">Database Handling</h3>
+      </div>
+      <ul class="space-y-1 text-gray-300">
+        <li>PostgreSQL</li>
+        <li>MongoDB</li>
+        <li>SQL Queries</li>
+        <li>Schema Design</li>
+        <li>Data Normalization</li>
+      </ul>
+    </div>
+
+    <div 
+      class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-cyan-500/50 transition-all border border-gray-700 hover:border-cyan-400"
+      data-aos="zoom-in" data-aos-delay="600">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-paint-brush text-cyan-300 text-2xl"></i>
+        <h3 class="text-xl font-semibold text-cyan-300">UI Tools</h3>
+      </div>
+      <ul class="space-y-1 text-gray-300">
+        <li>Bootstrap</li>
+        <li>Tailwind CSS</li>
+        <li>Canva</li>
+        <li>Chakra UI</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- Projects Section -->
+<section id="projects" data-section class="bg-gray-900 text-white py-16 px-4 md:px-16 opacity-0 translate-y-10 transition duration-1000">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-center text-cyan-400">My Projects</h2>
+
+    <div class="space-y-10">
+      <!-- Project 1 -->
+      <div class="flex flex-col lg:flex-row items-center gap-8 bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-cyan-400 transition">
+        <img src="/Screenshot (28).png" alt="Project 1" class="w-full lg:w-1/2 h-64 object-cover rounded-md">
+        <div class="w-full lg:w-1/2">
+          <h3 class="text-3xl font-semibold mb-3">Project One</h3>
+          <p class="text-gray-300 mb-4">
+            A brief description about project one. This project does amazing things using cool technologies.
+          </p>
+          <a href="https://ajay-sta.github.io/photography-website/#about" target="_blank"
+            class="inline-block bg-cyan-400 text-black font-medium px-6 py-2 rounded hover:bg-cyan-300 transition">
+            🔗 View Live
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-8 bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-cyan-400 transition">
+        <img src="/wedding.png" alt="Project 2" class="w-full lg:w-1/2 h-64 object-cover rounded-md">
+        <div class="w-full lg:w-1/2">
+          <h3 class="text-3xl font-semibold mb-3">Project Two</h3>
+          <p class="text-gray-300 mb-4">
+            This project showcases advanced functionality and responsive design for modern web apps.
+          </p>
+          <a href="https://ajay-sta.github.io/photography-website/#about" target="_blank"
+            class="inline-block bg-cyan-400 text-black font-medium px-6 py-2 rounded hover:bg-cyan-300 transition">
+            🔗 View Live
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="flex flex-col lg:flex-row items-center gap-8 bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-cyan-400 transition">
+        <img src="/wedding.png" alt="Project 3" class="w-full lg:w-1/2 h-64 object-cover rounded-md">
+        <div class="w-full lg:w-1/2">
+          <h3 class="text-3xl font-semibold mb-3">Project Three</h3>
+          <p class="text-gray-300 mb-4">
+            An interactive and visually appealing project, optimized for all screen sizes.
+          </p>
+          <a href="https://ajay-sta.github.io/photography-website/#about" target="_blank"
+            class="inline-block bg-cyan-400 text-black font-medium px-6 py-2 rounded hover:bg-cyan-300 transition">
+            🔗 View Live
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates" class="bg-black py-16 px-4 text-white">
+  <div class="text-center mb-10">
+    <h2 class="text-4xl font-bold text-cyan-400">Certificates</h2>
+    <hr class="mt-2 w-20 border-cyan-500 mx-auto">
+  </div>
+
+  <div class="flex justify-center">
+    <div class="swiper-container w-[90%] md:w-[60%] bg-gray-900 p-6 rounded-2xl shadow-xl relative overflow-hidden">
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide flex justify-center">
+          <img src="/google clooud _page-0001.jpg" alt="Certificate 1" class="rounded-xl max-h-[500px] object-contain" />
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <img src="/solution challange_page-0001.jpg" alt="Certificate 2" class="rounded-xl max-h-[500px] object-contain" />
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <img src="/google clooud _page-0001.jpg" alt="Certificate 3" class="rounded-xl max-h-[500px] object-contain" />
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <img src="/solution challange_page-0001.jpg" alt="Certificate 4" class="rounded-xl max-h-[500px] object-contain" />
+        </div>
+        <div class="swiper-slide flex justify-center">
+          <img src="/google clooud _page-0001.jpg" alt="Certificate 5" class="rounded-xl max-h-[500px] object-contain" />
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="swiper-button-prev text-cyan-400"></div>
+      <div class="swiper-button-next text-cyan-400"></div>
+
+      <!-- Pagination -->
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact Us Section -->
+<section id="contact" class="bg-black py-16 px-4 text-white reveal-section">
+  <div class="text-center mb-10">
+    <h2 class="text-4xl font-bold text-cyan-400">Contact Me</h2>
+    <hr class="mt-2 w-20 border-cyan-500 mx-auto" />
+  </div>
+
+  <div class="flex justify-center">
+    <!-- Responsive Contact Box -->
+    <div class="bg-gray-900 py-14 px-8 rounded-2xl shadow-xl w-[90%] sm:w-[70%] lg:w-[45%] flex justify-center gap-12 text-4xl">
+      
+      <!-- Email Icon -->
+      <a href="mailto:rathodajay3161@gmail.com" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-envelope text-red-500 hover:scale-110 transition-transform"></i>
+      </a>
+
+      <!-- Instagram Icon -->
+      <a href="https://www.instagram.com/ajay.rathod326" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram text-pink-500 hover:scale-110 transition-transform"></i>
+      </a>
+
+      <!-- LinkedIn Icon -->
+      <a href="https://www.linkedin.com/in/ajay-rathod-2b6753210" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-linkedin text-blue-600 hover:scale-110 transition-transform"></i>
+      </a>
+
+      <!-- WhatsApp Icon -->
+      <a href="https://wa.me/917498342076" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp text-green-500 hover:scale-110 transition-transform"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+       
+<!-- Feedback Section -->
+<section id="Feedback" class="py-16 px-6 md:px-20 bg-gradient-to-br from-black to-gray-900 text-white">
+  <h2 class="text-4xl font-bold text-center mb-12 text-cyan-400">Your Feedback</h2>
+
+  <div class="mx-auto bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-cyan-500/30 transition-all w-[90%] sm:w-[70%] lg:w-[50%]">
+    <form class="space-y-6">
+      <!-- Name Input -->
+      <div>
+        <label for="name" class="block text-cyan-300 mb-2">Your Name</label>
+        <input type="text" id="name" name="name" required
+          class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400" placeholder="Enter your name">
+      </div>
+
+      <!-- Email Input -->
+      <div>
+        <label for="email" class="block text-cyan-300 mb-2">Your Email</label>
+        <input type="email" id="email" name="email" required
+          class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400" placeholder="Enter your email">
+      </div>
+
+      <!-- Feedback Input -->
+      <div>
+        <label for="message" class="block text-cyan-300 mb-2">Your Feedback</label>
+        <textarea id="message" name="message" rows="5" required
+          class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400" placeholder="Write your feedback here..."></textarea>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-cyan-400 text-black font-semibold py-3 rounded-lg hover:bg-cyan-300 transition-all">Submit</button>
+    </form>
+  </div>
+</section>
+ <!-- Footer Section -->
+<footer class="bg-black text-white py-6 px-4">
+  <div class="container mx-auto text-center">
+    <p class="text-base text-gray-400">
+      &copy; 2025 Ajay Rathod | All Rights Reserved
+    </p>
+  </div>
+</footer>
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="/script.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("opacity-100", "translate-y-0");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll("[data-section]").forEach((section) => {
+    observer.observe(section);
+  });
+</script>
+<!-- Firebase App (core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+
+<!-- Firebase Firestore -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+<!-- Firebase App (core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+
+<!-- Firebase Firestore -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+<!-- Inline Firebase Config -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAlE2kl5QvyWKiG1WFncZ3xaKiGYg6p9xk",
+    authDomain: "portfolio-website-8e3cf.firebaseapp.com",
+    projectId: "portfolio-website-8e3cf",
+    storageBucket: "portfolio-website-8e3cf.firebasestorage.app",
+    messagingSenderId: "690574216880",
+    appId: "1:690574216880:web:3463872eedbefe6fda7575"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Target tbody where rows will be added
+  const tableBody = document.querySelector("tbody");
+
+  async function loadFeedbacks() {
+    const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"));
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const tr = document.createElement("tr");
+      tr.className = "border-b border-gray-700 hover:bg-gray-700";
+
+      tr.innerHTML = `
+        <td class="p-4">${data.name || "Anonymous"}</td>
+        <td class="p-4">${data.email || "N/A"}</td>
+        <td class="p-4">${data.message || ""}</td>
+      `;
+
+      tableBody.appendChild(tr);
+    });
+  }
+
+  loadFeedbacks();
+</script>
+
+
+
+</body>
+</html>
