@@ -440,63 +440,108 @@
   document.querySelectorAll("[data-section]").forEach((section) => {
     observer.observe(section);
   });
-</script>
-<!-- Firebase App (core SDK) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // -----------------------
+    // Typing Animation Setup
+    // -----------------------
+    const domains = [
+      "Web Developer",
+      "Software Developer",
+      "UI/UX Designer",
+      "Java Developer",
+      "Open Source Contributor"
+    ];
+    let index = 0;
+    const typedText = document.getElementById("typedText");
 
-<!-- Firebase Firestore -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+    function changeText() {
+      typedText.textContent = domains[index];
+      index = (index + 1) % domains.length;
+    }
+    setInterval(changeText, 2500);
 
-<!-- Firebase App (core SDK) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-
-<!-- Firebase Firestore -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-
-<!-- Inline Firebase Config -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAlE2kl5QvyWKiG1WFncZ3xaKiGYg6p9xk",
-    authDomain: "portfolio-website-8e3cf.firebaseapp.com",
-    projectId: "portfolio-website-8e3cf",
-    storageBucket: "portfolio-website-8e3cf.firebasestorage.app",
-    messagingSenderId: "690574216880",
-    appId: "1:690574216880:web:3463872eedbefe6fda7575"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Target tbody where rows will be added
-  const tableBody = document.querySelector("tbody");
-
-  async function loadFeedbacks() {
-    const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"));
-    const snapshot = await getDocs(q);
-
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const tr = document.createElement("tr");
-      tr.className = "border-b border-gray-700 hover:bg-gray-700";
-
-      tr.innerHTML = `
-        <td class="p-4">${data.name || "Anonymous"}</td>
-        <td class="p-4">${data.email || "N/A"}</td>
-        <td class="p-4">${data.message || ""}</td>
-      `;
-
-      tableBody.appendChild(tr);
+    // -----------------------
+    // Swiper Slider Config
+    // -----------------------
+    const swiper = new Swiper(".swiper-container", {
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: 1,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 1
+        },
+        1024: {
+          slidesPerView: 1
+        }
+      }
     });
-  }
 
-  loadFeedbacks();
+    // -----------------------
+    // Navbar Toggle for Mobile
+    // -----------------------
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    const navbar = document.getElementById('navbar');
+
+    if (menuBtn && menu) {
+      menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+      });
+    });
+
+    // -----------------------
+    // Smooth Scroll on Anchor Click
+    // -----------------------
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href').trim());
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // -----------------------
+    // Hide/Show Navbar on Scroll
+    // -----------------------
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+  });
 </script>
-
-<script src="script.js"></script>
 
 </body>
 </html>
